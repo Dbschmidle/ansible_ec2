@@ -42,3 +42,13 @@ Create the inventory file
 
 Inside the inventory file add the IP addresses of the hosts
 - EC2 IP addesses are ephemeral and can change after stop/starting the instance
+
+Makes a conenction between all the hosts in the inventory file
+- `$ ansible all --key-file ~/.ssh/ansible -i inventory -m ping `
+
+In the inventory file add the ansible ssh private key and declare the ansible_user (ex. ec2-user)
+- `ansible_user=ec2-user ansible_ssh_private_key_file=~/.ssh/ansible`
+
+OR 
+
+create an ansible.cfg file and declare the private_key_file
