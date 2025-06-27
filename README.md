@@ -33,7 +33,7 @@ To view the keys in the ec2 instance:
 
 Finally, initialize a git repo & Add your default ssh key to SSH keys on github.
 
-## Installing Ansible 
+## Installing Ansible & Configuration
 
 `$ sudo apt update && sudo apt install ansible`
 
@@ -52,3 +52,16 @@ In the inventory file add the ansible ssh private key and declare the ansible_us
 OR 
 
 create an ansible.cfg file and declare the private_key_file
+
+To gather facts about our server(s):
+- `ansible all -m gather_facts`
+
+## Administration Commands 
+
+Example of making a change in our server: `$ sudo apt update`
+- Updating the apt cache using sudo with --become
+    - `$ ansible all -m apt -a update_cache=true --become`
+
+Upgrading dist across all servers:
+- `$ ansible all -m apt -a "upgrade=dist" --become`
+
