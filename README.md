@@ -65,3 +65,10 @@ Example of making a change in our server: `$ sudo apt update`
 Upgrading dist across all servers:
 - `$ ansible all -m apt -a "upgrade=dist" --become`
 
+## Creating & Running Playbooks
+
+To run the playbook:
+- `$ ansible-playbook --ask-become-pass <PLAYBOOK_NAME>.yaml`
+
+Create a playbook to install and start an apache2 server. 
+- In AWS EC2, add an inbound rule to allow HTTP requests  
