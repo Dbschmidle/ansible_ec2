@@ -1,14 +1,20 @@
 # Using Ansible on AWS EC2
+This is a tutorial readme for using / learning Ansible with AWS EC2 instances - this closely follows a tutorial by Jay Lacroix:
 
-## SSH 
-- Create a new EC2 Instance
-    - Choose an instance type (ex. AWS Linux, Ubuntu, etc)
-- Create a key pair 
-    - RSA: better performance + smaller key sizes
-    - Ed25519: better compatability on older systems, generally consider more secure than RSA and resistant to certain attacks
+https://www.learnlinux.tv/getting-started-with-ansible-04-executing-ad-hoc-commands/
 
-`$ chmod 400 <my-key>.pem`
-- Give the key the correct permissions
+
+## SSH & EC2 Setup
+Create a new EC2 Instance
+- Choose an instance type (ex. AWS Linux, Ubuntu, etc)
+
+Create a key pair 
+- RSA: better performance + smaller key sizes
+- Ed25519: better compatability on older systems, generally consider more secure than RSA and resistant to certain attacks
+
+Give the key the correct permissions
+- `$ chmod 400 <my-key>.pem`
+
 
 `$ ssh -i <my-key>.pem ec2-user@<IP_ADDRESS>`
 - 'ec2-user' is used for AWS Linux
@@ -24,3 +30,15 @@ Copy the ssh key to the ec2 instance
 
 To view the keys in the ec2 instance:
 - `cat ~/.ssh/authorized_keys`
+
+Finally, initialize a git repo & Add your default ssh key to SSH keys on github.
+
+## Installing Ansible 
+
+`$ sudo apt update && sudo apt install ansible`
+
+Create the inventory file
+- The inventory file defines hosts that ansible is allowed to manage and how to connect to them using SSH 
+
+Inside the inventory file add the IP addresses of the hosts
+- EC2 IP addesses are ephemeral and can change after stop/starting the instance
