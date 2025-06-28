@@ -7,9 +7,23 @@
   - name: install apache2 package
     apt:
       name: apache2
+    when: ansible_distribution == "Ubuntu"
+
+  - name: install apache2 package
+    yum:
+      name: httpd
+    when: ansible_distribution == "Amazon"
 
   - name: Start and enable Apache2
     service:
       name: apache2
       state: started
       enabled: true
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Start and enable Apache2
+    service:
+      name: httpd
+      state: started
+      enabled: true
+    when: ansible_distribution == "Amazon"
