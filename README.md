@@ -72,3 +72,18 @@ To run the playbook:
 
 Create a playbook to install and start an apache2 server. 
 - In AWS EC2, add an inbound rule to allow HTTP requests  
+
+**When Conditional**
+
+Issues can arise in playbooks when servers have different distributions (ex. package installers apt vs yum)
+
+<sub>*install_apache.yml*</sub>
+```yaml
+  - name: install apache2 package
+    apt:
+      name: apache2
+    when: ansible_distribution == "Ubuntu"
+```
+
+How to get distribution condition:
+- `ansible all -m gather_facts | grep ansible_distribution`
